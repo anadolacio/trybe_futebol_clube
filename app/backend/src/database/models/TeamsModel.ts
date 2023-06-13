@@ -13,7 +13,7 @@ InferAttributes<TeamsModel>,
 InferCreationAttributes<TeamsModel>
 > {
   declare id: CreationOptional<number>;
-  declare teamName: CreationOptional<number>;
+  declare teamName: string;
 }
 
 TeamsModel.init({
