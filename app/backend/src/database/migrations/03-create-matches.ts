@@ -3,7 +3,7 @@ import IMatches from '../../Interfaces/IMatches';
 
 export default {
   up(queryInterface: QueryInterface) {
-    return queryInterface.createTable<Model<IMatches>>('matches', {
+    return queryInterface.createTable<Model>('matches', {
       id: {
         type: DataTypes.INTEGER,
         allowNull: false,

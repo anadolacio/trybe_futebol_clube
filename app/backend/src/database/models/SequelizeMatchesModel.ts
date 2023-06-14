@@ -7,11 +7,11 @@ import {
 } from 'sequelize';
 
 import db from '.';
-import TeamsModel from './TeamsModel';
+import TeamsModel from './SequelizeTeamsModel';
 
-class MatchesModel extends Model<
-InferAttributes<MatchesModel>,
-InferCreationAttributes<MatchesModel>
+class SequelizeMatchesModel extends Model<
+InferAttributes<SequelizeMatchesModel>,
+InferCreationAttributes<SequelizeMatchesModel>
 > {
   declare id: CreationOptional<number>;
   declare homeTeamId: number;
@@ -21,7 +21,7 @@ InferCreationAttributes<MatchesModel>
   declare inProgress: boolean;
 }
 
-MatchesModel.init({
+SequelizeMatchesModel.init({
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -63,7 +63,7 @@ MatchesModel.init({
   underscored: true,
 });
 
-TeamsModel.hasMany(MatchesModel, { foreignKey: 'homeTeamId', as: 'homeTeamId' });
-TeamsModel.hasMany(MatchesModel, { foreignKey: 'awayTeamId', as: 'awayTeamId' });
+TeamsModel.hasMany(SequelizeMatchesModel, { foreignKey: 'homeTeamId', as: 'homeTeamId' });
+TeamsModel.hasMany(SequelizeMatchesModel, { foreignKey: 'awayTeamId', as: 'awayTeamId' });
 
-export default MatchesModel;
+export default SequelizeMatchesModel;
