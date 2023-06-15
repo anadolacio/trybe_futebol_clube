@@ -11,4 +11,11 @@ export default class UserController {
     const { status, data } = await this.userService.getUserEmail(req.body);
     res.status(mapStatusHTTP(status)).json(data);
   };
+
+  public getUserByRole = async (req: Request, res: Response) => {
+    const { authorization } = req.headers;
+    if (!authorization) return res.status(401).json({ message: 'Token not found' });
+    const { status, data } = await this.userService.getUserByRole(authorization);
+    return res.status(mapStatusHTTP(status)).json(data);
+  };
 }

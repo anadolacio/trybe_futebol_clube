@@ -7,11 +7,8 @@ export type Token = {
   token: string;
 };
 
-export type TokenPayload = {
-  email: number;
-  password: string;
-};
-
 export default interface TokenGenerator {
+  decode(token: string): string;
   generate(user: User): string;
+  verify(token: string): boolean;
 }
