@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken';
-import TokenGenerator, { User } from '../Interfaces/TokenGenerator';
+import TokenGenerator, { User } from '../Interfaces/ITokenGenerator';
 
 export default class JwtToken implements TokenGenerator {
   private jwt = jwt;
