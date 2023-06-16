@@ -37,6 +37,7 @@ SequelizeUsersModel.init({
   email: {
     type: DataTypes.STRING(30),
     allowNull: false,
+    unique: true,
   },
   password: {
     type: DataTypes.STRING(30),
