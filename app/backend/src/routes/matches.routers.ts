@@ -8,6 +8,11 @@ const router = Router();
 
 router.get('/', (req: Request, res: Response) => matchesController.getAllMatches(req, res));
 router.patch(
+  '/:id',
+  TokenValidation.isTokenValid,
+  (req: Request, res: Response) => matchesController.updateScore(req, res),
+);
+router.patch(
   '/:id/finish',
   TokenValidation.isTokenValid,
   (req: Request, res: Response) => matchesController.updateUnfinishedMatches(req, res),

@@ -26,4 +26,12 @@ export default class MatchesController {
     const { status, data } = await this.matchesService.updateUnfinishedMatches(Number(id));
     return res.status(mapStatusHTTP(status)).json({ message: data });
   }
+
+  public async updateScore(req: Request, res: Response) {
+    const { id } = req.params;
+    const { homeTeamGoals, awayTeamGoals } = req.body;
+    const { status, data } = await this.matchesService
+      .updateScore(Number(id), homeTeamGoals, awayTeamGoals);
+    return res.status(mapStatusHTTP(status)).json({ data });
+  }
 }

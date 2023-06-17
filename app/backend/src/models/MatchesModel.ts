@@ -38,4 +38,12 @@ export default class MatchesModel implements IMatchesModel {
 
     return 'Finished';
   }
+
+  async updateScore(id:number, homeTeamGoals: number, awayTeamGoals:number): Promise<number> {
+    const [score] = await this.model.update({ homeTeamGoals, awayTeamGoals }, {
+      where: { id },
+    });
+
+    return score;
+  }
 }

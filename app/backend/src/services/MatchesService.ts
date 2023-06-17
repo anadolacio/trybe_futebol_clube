@@ -22,4 +22,10 @@ export default class MatchesService {
     const unfinishedMatch = await this.matchesModel.updateUnfinishedMatches(id);
     return { status: 'SUCCESSFUL', data: unfinishedMatch };
   }
+
+  public async updateScore(id:number, homeTeamGoals:number, awayTeamGoals:number):
+  Promise<ServiceResponse<number>> {
+    const score = await this.matchesModel.updateScore(id, homeTeamGoals, awayTeamGoals);
+    return { status: 'SUCCESSFUL', data: score };
+  }
 }
