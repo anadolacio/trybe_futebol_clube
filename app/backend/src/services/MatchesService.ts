@@ -17,4 +17,9 @@ export default class MatchesService {
     const allMatches = await this.matchesModel.getMatchesByProgress(inProgress);
     return { status: 'SUCCESSFUL', data: allMatches };
   }
+
+  public async updateUnfinishedMatches(id:number): Promise<ServiceResponse<string>> {
+    const unfinishedMatch = await this.matchesModel.updateUnfinishedMatches(id);
+    return { status: 'SUCCESSFUL', data: unfinishedMatch };
+  }
 }

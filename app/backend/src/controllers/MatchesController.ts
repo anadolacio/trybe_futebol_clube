@@ -20,4 +20,10 @@ export default class MatchesController {
 
     return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
   }
+
+  public async updateUnfinishedMatches(req: Request, res: Response) {
+    const { id } = req.params;
+    const { status, data } = await this.matchesService.updateUnfinishedMatches(Number(id));
+    return res.status(mapStatusHTTP(status)).json({ message: data });
+  }
 }

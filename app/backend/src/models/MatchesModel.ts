@@ -29,4 +29,13 @@ export default class MatchesModel implements IMatchesModel {
     });
     return allMatches.map((match) => match);
   }
+
+  async updateUnfinishedMatches(id:number): Promise<string> {
+    const unfinishedMatch = await this.model.update({ inProgress: false }, {
+      where: { id },
+    });
+    if (!unfinishedMatch) return 'Match not found';
+
+    return 'Finished';
+  }
 }
