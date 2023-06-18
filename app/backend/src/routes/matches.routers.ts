@@ -7,6 +7,11 @@ const matchesController = new MatchesController();
 const router = Router();
 
 router.get('/', (req: Request, res: Response) => matchesController.getAllMatches(req, res));
+router.post(
+  '/',
+  TokenValidation.isTokenValid,
+  (req: Request, res: Response) => matchesController.createNewMatch(req, res),
+);
 router.patch(
   '/:id',
   TokenValidation.isTokenValid,

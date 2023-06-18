@@ -1,9 +1,11 @@
+import TeamsModel from '../models/TeamsModel';
 import IMatches from '../Interfaces/matches/IMatches';
 import { IMatchesModel } from '../Interfaces/matches/IMatchesModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
 import MatchesModel from '../models/MatchesModel';
 
 export default class MatchesService {
+  private teamModel = new TeamsModel();
   constructor(
     private matchesModel: IMatchesModel = new MatchesModel(),
   ) { }
@@ -27,5 +29,10 @@ export default class MatchesService {
   Promise<ServiceResponse<number>> {
     const score = await this.matchesModel.updateScore(id, homeTeamGoals, awayTeamGoals);
     return { status: 'SUCCESSFUL', data: score };
+  }
+
+  public async createNewMatch(data: IMatches): Promise<ServiceResponse<IMatches>> {
+    const newMatch = await this.matchesModel.createNewMatch(data);
+    return { status: 'CREATED', data: newMatch };
   }
 }

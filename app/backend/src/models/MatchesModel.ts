@@ -46,4 +46,16 @@ export default class MatchesModel implements IMatchesModel {
 
     return score;
   }
+
+  async createNewMatch(data: IMatches): Promise<IMatches> {
+    const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = data;
+    const newMatch = await this.model.create({
+      homeTeamId,
+      homeTeamGoals,
+      awayTeamId,
+      awayTeamGoals,
+      inProgress: true,
+    });
+    return newMatch;
+  }
 }

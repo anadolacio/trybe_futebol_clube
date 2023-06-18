@@ -34,4 +34,10 @@ export default class MatchesController {
       .updateScore(Number(id), homeTeamGoals, awayTeamGoals);
     return res.status(mapStatusHTTP(status)).json({ data });
   }
+
+  public async createNewMatch(req: Request, res: Response) {
+    const { status, data } = await this.matchesService
+      .createNewMatch(req.body);
+    return res.status(mapStatusHTTP(status)).json(data);
+  }
 }
