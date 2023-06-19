@@ -36,8 +36,19 @@ export default class MatchesController {
   }
 
   public async createNewMatch(req: Request, res: Response) {
+    const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = req.body;
+    if (homeTeamId === awayTeamId) {
+      return res
+        .status(422)
+        .json({ message: 'It is not possible to create a match with two equal teams' });
+    }
+
+    if (!homeTeamId || !homeTeamGoals || !awayTeamId || !awayTeamGoals) {
+      return res.status(400).json({ message: 'Some fields are missing' });
+    }
+
     const { status, data } = await this.matchesService
-      .createNewMatch(req.body);
+      .createNewMatch({ homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals });
     return res.status(mapStatusHTTP(status)).json(data);
   }
 }

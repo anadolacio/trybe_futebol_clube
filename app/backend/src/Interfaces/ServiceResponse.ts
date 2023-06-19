@@ -1,5 +1,5 @@
 type ServiceResponseErrorType = 'INVALID_DATA' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'CONFLICT'
-| 'CREATED';
+| 'CREATED' | 'NOT_POSSIBLE';
 
 export type ServiceMessage = { message: string };
 
