@@ -25,21 +25,14 @@ describe('Matches fluxo testes', () => {
     expect(body).to.deep.equal(MatchesMock.allMatches);
   });
 
-//   it('Teste se retorna teams por ID', async () => {
-//     sinon.stub(SequelizeTeamsModel, 'findByPk').resolves(TeamMock.team as any);
+  it('Teste se retorna partidas finalizadas', async () => {
+    const matchesInstance = SequelizeMatchesModel.bulkBuild(MatchesMock.matchesFinished)
+    sinon.stub(SequelizeMatchesModel, 'findAll').resolves(matchesInstance)
 
-//     const { status, body } = await chai.request(app).get('/teams/5');
+    const response = await chai.request(app).get('/matches?inProgress=false');
 
-//     expect(status).to.equal(200);
-//     expect(body).to.deep.equal(TeamMock.team);
-//   });
+    expect(response.status).to.be.eq(200);
+    expect(response.body).to.be.deep.eq(MatchesMock.matchesFinished);
+  });
 
-//   it('Teste se retorna teams por ID retorna nulo se ID for inválido', async () => {
-//     sinon.stub(SequelizeTeamsModel, 'findByPk').resolves(null);
-
-//     const { status, body } = await chai.request(app).get('/teams/999');
-
-//     expect(status).to.equal(200);
-//     expect(body).to.deep.equal(null);
-//   });
 });
