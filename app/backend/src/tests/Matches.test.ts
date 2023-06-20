@@ -5,6 +5,7 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 import SequelizeMatchesModel from '../database/models//SequelizeMatchesModel';
+import MatchesService from '../services/MatchesService';
 
 import { Response } from 'superagent';
 import MatchesMock from './mocks/Matches.Mock';
@@ -35,4 +36,11 @@ describe('Matches fluxo testes', () => {
     expect(response.body).to.be.deep.eq(MatchesMock.matchesFinished);
   });
 
+  describe('PATCH /matches/:id - Integration Tests', () => {
+    it('Token não informado - deve retornar erro', async () => {
+      const response = await chai.request(app).patch('/matches/56').set({ authorization: ''});
+
+      expect(response.status).to.be.equal(401);
+      expect(response.body).to.deep.equal({ message: 'Token not found' });
 });
+}); });
