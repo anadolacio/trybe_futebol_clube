@@ -26,7 +26,7 @@ describe('Users fluxo testes', () => {
       expect(response.status).to.be.equal(400);
       expect(response.body).to.deep.equal({ message: 'All fields must be filled' });
   });
-  it('Teste se user válido com senha inválida', async () => {
+  it('Teste se user válido com usuário inválida', async () => {
     const response = await chai.request(app).post('/login').send(UserMock.validUser);
       expect(response.status).to.be.equal(401);
       expect(response.body).to.have.key('message');
